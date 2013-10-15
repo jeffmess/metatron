@@ -1,0 +1,32 @@
+{
+  "name": "metatron",
+  "version": "0.0.0",
+  "main": "lib/metatron.js",
+  "description": "Metatron fetches data from a url.",
+  "homepage": "https://github.com/jeffmess/metatron",
+  "bugs": "https://github.com/jeffmess/metatron/issues",
+  "author": {
+    "name": "Jeffrey van Aswegen",
+    "email": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffmess/metatron"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt-contrib-watch": "~0.5.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-coffeelint": "~0.0.7",
+    "grunt-simple-mocha": "~0.4.0",
+    "should": "~1.2.2",
+    "matchdep": "~0.1.2",
+    "mocha-cakes": "~0.9.0",
+    "grunt": "~0.4.1"
+  }
+}
