@@ -7,20 +7,18 @@ Install the module with: `npm install metatron`
 
 ```javascript
 var metatron = require('metatron');
-metatron.awesome(); // "awesome"
+metatron.validateUrl("www.youtube.com"); // true
+metatron.validateUrl("s3://amazon.com"); // true
+
+metatron.stringContainsUrl("This string contains a url: youtube.com"); // true
+metatron.stringContainsUrl("This string does not contain a url"); // false
+
+metatron.convertString({text: "This string contains a url: youtube.com"});
+//"This string contains a url: <a href='youtube.com' target=''>youtube.com</a>"
+
+metatron.convertString({text: "This string contains 2 urls: youtube.com and http://amazon.com/login", target: "_blank"});
+//"This string contains 2 urls: <a href='youtube.com' target='_blank'>youtube.com</a> and <a href='http://amazon.com/login' target='_blank'>http://amazon.com/login</a>")
 ```
-
-## Documentation
-_(Coming soon)_
-
-## Examples
-_(Coming soon)_
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
 
 ## License
 Copyright (c) 2013 Jeffrey van Aswegen. Licensed under the MIT license.
