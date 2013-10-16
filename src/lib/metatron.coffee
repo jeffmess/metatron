@@ -43,9 +43,13 @@ exports.stringContainsUrl = (str) ->
   return false unless regex.test(str)
   true
 
+exports.prefixWord = (word) ->
+  regex = new RegExp('^([a-zA-Z0-9]+:\\/\\/)')
+  return if regex.test word then word else "http://#{word}"
+
 exports.convertWord = (word, target="") ->
   return word unless @stringContainsUrl(word)
-  "<a href='#{word}' target='#{target}'>#{word}</a>"
+  "<a href='#{@prefixWord(word)}' target='#{target}'>#{word}</a>"
 
 exports.convertString = (options={}) ->
   # returns the string with href tags
