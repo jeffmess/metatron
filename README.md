@@ -17,7 +17,7 @@ metatron.convertString({text: "This string contains a url: youtube.com"});
 //"This string contains a url: <a href='youtube.com' target=''>youtube.com</a>"
 
 metatron.convertString({text: "This string contains 2 urls: youtube.com and http://amazon.com/login", target: "_blank"});
-//"This string contains 2 urls: <a href='youtube.com' target='_blank'>youtube.com</a> and <a href='http://amazon.com/login' target='_blank'>http://amazon.com/login</a>")
+//"This string contains 2 urls: <a href='http://youtube.com' target='_blank'>youtube.com</a> and <a href='http://amazon.com/login' target='_blank'>http://amazon.com/login</a>")
 ```
 
 ## License
