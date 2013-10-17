@@ -68,7 +68,7 @@ var _this = this;
     }
     str = (function() {
       var _i, _len, _ref, _results;
-      _ref = options.text.split(/\s+/);
+      _ref = options.text.split(/([\s]+|[^\s]+)/);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         word = _ref[_i];

@@ -58,7 +58,7 @@ Licensed under the MIT license.
     throw new Error("Required: options.text does not exist.") unless options.text?
     return options.text unless @stringContainsUrl(options.text)
     options.target = "" unless options.target?
-    str = (@convertWord word, options.target for word in options.text.split(/\s+/)) # regex split on whitespace.newline
+    str = (@convertWord word, options.target for word in options.text.split(/([\s]+|[^\s]+)/))# regex split on whitespace.newline (([\s]+)|([^\s]+)):
     str.join(" ")
 
   root['metatron'] = exports # root is window in browser and global on server
