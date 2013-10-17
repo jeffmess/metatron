@@ -34,6 +34,15 @@ var _this = this;
     }
     return true;
   };
+  exports.prefixWord = function(word) {
+    var regex;
+    regex = new RegExp('^([a-zA-Z0-9]+:\\/\\/)');
+    if (regex.test(word)) {
+      return word;
+    } else {
+      return "http://" + word;
+    }
+  };
   exports.convertWord = function(word, target) {
     if (target == null) {
       target = "";
@@ -41,7 +50,7 @@ var _this = this;
     if (!this.validateUrl(word)) {
       return word;
     }
-    return "<a href='" + word + "' target='" + target + "'>" + word + "</a>";
+    return "<a href='" + (this.prefixWord(word)) + "' target='" + target + "'>" + word + "</a>";
   };
   exports.convertString = function(options) {
     var str, word;

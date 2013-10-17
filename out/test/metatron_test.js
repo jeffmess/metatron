@@ -55,18 +55,18 @@
       it("should convert a link in a string to and href", function() {
         return metatron.convertString({
           text: "This string contains a url: youtube.com"
-        }).should.eql("This string contains a url: <a href='youtube.com' target=''>youtube.com</a>");
+        }).should.eql("This string contains a url: <a href='http://youtube.com' target=''>youtube.com</a>");
       });
       it("should convert multiple links in a string to hrefs", function() {
         return metatron.convertString({
           text: "This string contains 2 urls: youtube.com and http://amazon.com/login"
-        }).should.eql("This string contains 2 urls: <a href='youtube.com' target=''>youtube.com</a> and <a href='http://amazon.com/login' target=''>http://amazon.com/login</a>");
+        }).should.eql("This string contains 2 urls: <a href='http://youtube.com' target=''>youtube.com</a> and <a href='http://amazon.com/login' target=''>http://amazon.com/login</a>");
       });
       return it("should convert multiple links in a string to hrefs with target set to _blank", function() {
         return metatron.convertString({
           text: "This string contains 2 urls: youtube.com and http://amazon.com/login",
           target: "_blank"
-        }).should.eql("This string contains 2 urls: <a href='youtube.com' target='_blank'>youtube.com</a> and <a href='http://amazon.com/login' target='_blank'>http://amazon.com/login</a>");
+        }).should.eql("This string contains 2 urls: <a href='http://youtube.com' target='_blank'>youtube.com</a> and <a href='http://amazon.com/login' target='_blank'>http://amazon.com/login</a>");
       });
     });
   });
