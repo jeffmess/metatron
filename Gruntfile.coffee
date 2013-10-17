@@ -24,12 +24,11 @@ module.exports = (grunt)->
         max_line_length:
           level: 'warn'
     coffee:
-      lib:
-        expand: true
-        cwd: 'src/lib/'
-        src: ['**/*.coffee']
-        dest: 'out/lib/'
-        ext: '.js'
+      compileBare:
+        options:
+          bare: true
+        files:
+          'out/lib/metatron.js': 'src/lib/metatron.coffee'
       test:
         expand: true
         cwd: 'src/test/'

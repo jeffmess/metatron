@@ -1,5 +1,3 @@
-'use strict'
-
 metatron = require '../lib/metatron.js'
 
 describe 'Metatron', ()->

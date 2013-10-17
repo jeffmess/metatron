@@ -1,5 +1,4 @@
 (function() {
-  'use strict';
   var metatron;
 
   metatron = require('../lib/metatron.js');

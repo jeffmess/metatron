@@ -7,26 +7,25 @@ Copyright (c) 2013 Jeffrey van Aswegen
 Licensed under the MIT license.
 */
 
+var _this = this;
 
-(function() {
-  'use strict';
+(function(root) {
+  var exports;
+  exports = {};
   exports.fetch = function(url) {
     return url;
   };
-
   exports.pattern = function() {
     return '(([a-zA-Z0-9]+:\\/\\/)?' + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + '((\\d{1,3}\\.){3}\\d{1,3}))' + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + '(\\?[;&a-z\\d%_.~+=-]*)?' + '(\\#[-a-z\\d_]*)?)';
   };
-
   exports.validateUrl = function(url) {
     var regex;
-    regex = new RegExp("^" + (this.pattern()) + "$", 'gi');
+    regex = new RegExp("^" + (this.pattern()) + "$", 'i');
     if (!regex.test(url)) {
       return false;
     }
     return true;
   };
-
   exports.stringContainsUrl = function(str) {
     var regex;
     regex = new RegExp(this.pattern(), 'gi');
@@ -35,17 +34,15 @@ Licensed under the MIT license.
     }
     return true;
   };
-
   exports.convertWord = function(word, target) {
     if (target == null) {
       target = "";
     }
-    if (!this.stringContainsUrl(word)) {
+    if (!this.validateUrl(word)) {
       return word;
     }
     return "<a href='" + word + "' target='" + target + "'>" + word + "</a>";
   };
-
   exports.convertString = function(options) {
     var str, word;
     if (options == null) {
@@ -62,7 +59,7 @@ Licensed under the MIT license.
     }
     str = (function() {
       var _i, _len, _ref, _results;
-      _ref = options.text.split(" ");
+      _ref = options.text.split(/\s+/);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         word = _ref[_i];
@@ -72,5 +69,5 @@ Licensed under the MIT license.
     }).call(this);
     return str.join(" ");
   };
-
-}).call(this);
+  return root['metatron'] = exports;
+})(this);
