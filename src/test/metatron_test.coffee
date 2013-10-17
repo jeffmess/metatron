@@ -1,4 +1,5 @@
-metatron = require '../lib/metatron.js'
+metatron_file = require '../lib/metatron.js'
+metatron = metatron_file.metatron
 
 describe 'Metatron', ()->
   describe '#of()', ()->

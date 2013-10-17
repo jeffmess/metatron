@@ -53,7 +53,7 @@ var _this = this;
     return "<a href='" + (this.prefixWord(word)) + "' target='" + target + "'>" + word + "</a>";
   };
   exports.convertString = function(options) {
-    var str, word;
+    var word;
     if (options == null) {
       options = {};
     }
@@ -66,7 +66,7 @@ var _this = this;
     if (options.target == null) {
       options.target = "";
     }
-    str = (function() {
+    return ((function() {
       var _i, _len, _ref, _results;
       _ref = options.text.split(/([\s]+|[^\s]+)/);
       _results = [];
@@ -75,8 +75,7 @@ var _this = this;
         _results.push(this.convertWord(word, options.target));
       }
       return _results;
-    }).call(this);
-    return str.join(" ");
+    }).call(this)).join("");
   };
   return root['metatron'] = exports;
 })(this);

@@ -23,7 +23,7 @@ Licensed under the MIT license.
     #   ]
     # }
     url
-# (([a-zA-Z0-9]+:\/\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|
+  # (([a-zA-Z0-9]+:\/\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|
   exports.pattern = ->
     '(([a-zA-Z0-9]+:\\/\\/)?'+ # protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ # domain name
@@ -31,8 +31,6 @@ Licensed under the MIT license.
     '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ # port and path
     '(\\?[;&a-z\\d%_.~+=-]*)?'+ # query string
     '(\\#[-a-z\\d_]*)?)'
-
-  # Public API methods
 
   exports.validateUrl = (url) ->
     regex = new RegExp("^#{@pattern()}$", 'i')
@@ -54,12 +52,10 @@ Licensed under the MIT license.
     "<a href='#{@prefixWord(word)}' target='#{target}'>#{word}</a>"
 
   exports.convertString = (options={}) ->
-    # returns the string with href tags
     throw new Error("Required: options.text does not exist.") unless options.text?
     return options.text unless @stringContainsUrl(options.text)
     options.target = "" unless options.target?
-    str = (@convertWord word, options.target for word in options.text.split(/([\s]+|[^\s]+)/))# regex split on whitespace.newline (([\s]+)|([^\s]+)):
-    str.join(" ")
+    (@convertWord word, options.target for word in options.text.split(/([\s]+|[^\s]+)/)).join("")
 
   root['metatron'] = exports # root is window in browser and global on server
   )(@)
