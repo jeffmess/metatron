@@ -41,8 +41,11 @@
       it("should recognize websites with a query string", function() {
         return metatron.validateUrl("some.website.com/test/query/string?params=1&version=2").should.be["true"];
       });
-      return it("should recognize websites with js fragments", function() {
+      it("should recognize websites with js fragments", function() {
         return metatron.validateUrl("some.website.com/test/query/string#blah").should.be["true"];
+      });
+      return it("should recognize websites with commas", function() {
+        return metatron.validateUrl("some.website.com/test,site/?qu,ery#position,").should.be["true"];
       });
     });
     describe('Fetch URL from string', function() {

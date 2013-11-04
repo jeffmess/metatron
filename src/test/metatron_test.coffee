@@ -41,6 +41,9 @@ describe 'Metatron', ()->
     it "should recognize websites with js fragments", () ->
       metatron.validateUrl("some.website.com/test/query/string#blah").should.be.true
 
+    it "should recognize websites with commas", () ->
+      metatron.validateUrl("some.website.com/test,site/?qu,ery#position,").should.be.true
+
 #    it "should recognize websites with nested js fragments", () ->
 #      metatron.validateUrl("some.website.com/test/query/string#blah/blah/blah").should.be.true
 
