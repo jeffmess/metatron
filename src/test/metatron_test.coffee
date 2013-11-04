@@ -41,8 +41,8 @@ describe 'Metatron', ()->
     it "should recognize websites with js fragments", () ->
       metatron.validateUrl("some.website.com/test/query/string#blah").should.be.true
 
-#    it "should recognize websites with nested js fragments", () ->
-#      metatron.validateUrl("some.website.com/test/query/string#blah/blah/blah").should.be.true
+    it "should recognize commas in a url", () ->
+      metatron.validateUrl("http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx").should.be.true
 
   describe 'Fetch URL from string', () ->
 
@@ -56,6 +56,9 @@ describe 'Metatron', ()->
 
     it "should convert a link in a string to and href", () ->
       metatron.convertString({text: "This string contains a url: youtube.com"}).should.eql("This string contains a url: <a href='http://youtube.com' target=''>youtube.com</a>")
+
+    it "should convert a link containing commas to an href", () ->
+      metatron.convertString({text: "http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx"}).should.eql("<a href='http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx' target=''>http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx</a>")
 
     it "should convert multiple links in a string to hrefs", () ->
       metatron.convertString({text: "This string contains 2 urls: youtube.com and http://amazon.com/login"}).should.eql("This string contains 2 urls: <a href='http://youtube.com' target=''>youtube.com</a> and <a href='http://amazon.com/login' target=''>http://amazon.com/login</a>")

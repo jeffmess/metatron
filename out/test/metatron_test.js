@@ -41,8 +41,11 @@
       it("should recognize websites with a query string", function() {
         return metatron.validateUrl("some.website.com/test/query/string?params=1&version=2").should.be["true"];
       });
-      return it("should recognize websites with js fragments", function() {
+      it("should recognize websites with js fragments", function() {
         return metatron.validateUrl("some.website.com/test/query/string#blah").should.be["true"];
+      });
+      return it("should recognize commas in a url", function() {
+        return metatron.validateUrl("http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx").should.be["true"];
       });
     });
     describe('Fetch URL from string', function() {
@@ -58,6 +61,11 @@
         return metatron.convertString({
           text: "This string contains a url: youtube.com"
         }).should.eql("This string contains a url: <a href='http://youtube.com' target=''>youtube.com</a>");
+      });
+      it("should convert a link containing commas to an href", function() {
+        return metatron.convertString({
+          text: "http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx"
+        }).should.eql("<a href='http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx' target=''>http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx</a>");
       });
       it("should convert multiple links in a string to hrefs", function() {
         return metatron.convertString({
