@@ -7,7 +7,7 @@ Copyright (c) 2013 Jeffrey van Aswegen
 Licensed under the MIT license.
 
 ###
-#metatron = (root) =>
+
 ((root) =>
   exports = {}
 
@@ -23,7 +23,7 @@ Licensed under the MIT license.
     #   ]
     # }
     url
-  # (([a-zA-Z0-9]+:\/\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|
+
   exports.pattern = ->
     '(([a-zA-Z0-9]+:\\/\\/)?'+ # protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ # domain name
@@ -38,7 +38,6 @@ Licensed under the MIT license.
     true
 
   exports.stringContainsUrl = (str) ->
-    # checks if string contains a url
     regex = new RegExp(@pattern(), 'gi')
     return false unless regex.test(str)
     true

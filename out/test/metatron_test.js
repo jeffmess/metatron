@@ -62,6 +62,11 @@
           text: "This string contains a url: youtube.com"
         }).should.eql("This string contains a url: <a href='http://youtube.com' target=''>youtube.com</a>");
       });
+      it("should convert a link containing commas to an href", function() {
+        return metatron.convertString({
+          text: "http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx"
+        }).should.eql("<a href='http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx' target=''>http://thedailywtf.com/Articles/Remember,-Remember-the-ThirtyThird-of-November.aspx</a>");
+      });
       it("should convert multiple links in a string to hrefs", function() {
         return metatron.convertString({
           text: "This string contains 2 urls: youtube.com and http://amazon.com/login"
