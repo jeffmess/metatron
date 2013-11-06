@@ -45,7 +45,7 @@
         return metatron.validateUrl("some.website.com/test/query/string#blah").should.be["true"];
       });
       return it("should recognize websites with commas", function() {
-        return metatron.validateUrl("some.website.com/test,site/?qu,ery#position,").should.be["true"];
+        return metatron.validateUrl("some.website.com/test,site/?qu,ery#test=as,a").should.be["true"];
       });
     });
     describe('Fetch URL from string', function() {
