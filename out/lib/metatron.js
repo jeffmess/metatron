@@ -31,7 +31,6 @@ var _this = this;
     Embed.prototype.isInstagramImage = function(url) {
       var regex;
       regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/[a-zA-Z0-9]+)\\/?$", 'i');
-      console.log(regex.test(url));
       if (!regex.test(url)) {
         return false;
       }
