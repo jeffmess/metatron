@@ -56,7 +56,7 @@
         return metatron.stringContainsUrl("This string does not contain a url").should.be["false"];
       });
     });
-    return describe('Convert URLs in a string to hrefs', function() {
+    describe('Convert URLs in a string to hrefs', function() {
       it("should convert a link in a string to and href", function() {
         return metatron.convertString({
           text: "This string contains a url: youtube.com"
@@ -77,6 +77,20 @@
           text: "This string contains 2 urls: youtube.com and http://amazon.com/login",
           target: "_blank"
         }).should.eql("This string contains 2 urls: <a href='http://youtube.com' target='_blank'>youtube.com</a> and <a href='http://amazon.com/login' target='_blank'>http://amazon.com/login</a>");
+      });
+    });
+    return describe('Embed URL', function() {
+      it("should be able to embed an instagram image", function() {
+        return metatron.convertString({
+          text: "http://instagram.com/p/eSSk3xTISl/",
+          embed: true
+        }).should.eql('<iframe src="//instagram.com/p/eSSk3xTISl/embed/" width="400" height="498" frameborder="0" scrolling="no" allowtransparency="true"></iframe>');
+      });
+      return it("should be able to embed 2 instagram images", function() {
+        return metatron.convertString({
+          text: "http://instagram.com/p/eSSk3xTISl/ and this here http://instagram.com/p/eSqC89zISo/",
+          embed: true
+        }).should.eql('<iframe src="//instagram.com/p/eSSk3xTISl/embed/" width="400" height="498" frameborder="0" scrolling="no" allowtransparency="true"></iframe> and this here <iframe src="//instagram.com/p/eSqC89zISo/embed/" width="400" height="498" frameborder="0" scrolling="no" allowtransparency="true"></iframe>');
       });
     });
   });

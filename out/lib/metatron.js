@@ -10,8 +10,37 @@ Licensed under the MIT license.
 var _this = this;
 
 (function(root) {
-  var exports;
+  var Embed, exports;
   exports = {};
+  Embed = (function() {
+    function Embed() {}
+
+    Embed.prototype.instagram = function(options) {
+      var instagram_url, regex;
+      if (!options.width) {
+        options.width = 400;
+      }
+      if (!options.height) {
+        options.height = 498;
+      }
+      regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/.+)$", 'i');
+      instagram_url = options.url.match(regex);
+      return "<iframe src=\"//" + instagram_url[1] + "embed/\" width=\"" + options.width + "\" height=\"" + options.height + "\" frameborder=\"0\" scrolling=\"no\" allowtransparency=\"true\"></iframe>";
+    };
+
+    Embed.prototype.isInstagramImage = function(url) {
+      var regex;
+      regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/.+)$", 'i');
+      if (!regex.test(url)) {
+        return false;
+      }
+      return true;
+    };
+
+    return Embed;
+
+  })();
+  exports.embed = new Embed;
   exports.fetch = function(url) {
     return url;
   };
@@ -43,12 +72,22 @@ var _this = this;
       return "http://" + word;
     }
   };
-  exports.convertWord = function(word, target) {
+  exports.convertWord = function(word, target, embed) {
     if (target == null) {
       target = "";
     }
+    if (embed == null) {
+      embed = false;
+    }
     if (!this.validateUrl(word)) {
       return word;
+    }
+    if (embed) {
+      if (this.embed.isInstagramImage(word)) {
+        return this.embed.instagram({
+          url: word
+        });
+      }
     }
     return "<a href='" + (this.prefixWord(word)) + "' target='" + target + "'>" + word + "</a>";
   };
@@ -66,13 +105,16 @@ var _this = this;
     if (options.target == null) {
       options.target = "";
     }
+    if (!options.embed) {
+      options.embed = false;
+    }
     return ((function() {
       var _i, _len, _ref, _results;
       _ref = options.text.split(/([\s]+|[^\s]+)/);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         word = _ref[_i];
-        _results.push(this.convertWord(word, options.target));
+        _results.push(this.convertWord(word, options.target, options.embed));
       }
       return _results;
     }).call(this)).join("");

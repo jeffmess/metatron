@@ -11,6 +11,23 @@ Licensed under the MIT license.
 ((root) =>
   exports = {}
 
+  class Embed
+    instagram: (options) ->
+      options.width = 400 unless options.width
+      options.height = 498 unless options.height
+      regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/.+)$", 'i')
+      instagram_url = options.url.match(regex)
+      """
+        <iframe src="//#{instagram_url[1]}embed/" width="#{options.width}" height="#{options.height}" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+      """
+
+    isInstagramImage: (url) ->
+      regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/.+)$", 'i')
+      return false unless regex.test(url)
+      true
+
+  exports.embed = new Embed
+
   # metatron.fetch(url)
   exports.fetch = (url) ->
     # future method to fetch meta data from a website
@@ -46,15 +63,18 @@ Licensed under the MIT license.
     regex = new RegExp('^([a-zA-Z0-9]+:\\/\\/)')
     return if regex.test word then word else "http://#{word}"
 
-  exports.convertWord = (word, target="") ->
+  exports.convertWord = (word, target="", embed=false) ->
     return word unless @validateUrl(word)
+    if embed
+      return @embed.instagram(url: word) if @embed.isInstagramImage(word)
     "<a href='#{@prefixWord(word)}' target='#{target}'>#{word}</a>"
 
   exports.convertString = (options={}) ->
     throw new Error("Required: options.text does not exist.") unless options.text?
     return options.text unless @stringContainsUrl(options.text)
     options.target = "" unless options.target?
-    (@convertWord word, options.target for word in options.text.split(/([\s]+|[^\s]+)/)).join("")
+    options.embed = false unless options.embed
+    (@convertWord word, options.target, options.embed for word in options.text.split(/([\s]+|[^\s]+)/)).join("")
 
   root['metatron'] = exports # root is window in browser and global on server
   )(@)
