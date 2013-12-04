@@ -1,6 +1,6 @@
 {
   "name": "metatron",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/jeffmess/metatron",
   "authors": [
     "Jeffrey van Aswegen <jeffmess@gmail.com>"
@@ -13,6 +13,9 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "Gruntfile",
+    "src/.*",
+    "package.json"
   ]
 }
