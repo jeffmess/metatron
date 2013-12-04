@@ -71,7 +71,7 @@ describe 'Metatron', ()->
 
   describe 'Embed URL', () ->
     it "should be able to embed an instagram image", () ->
-      metatron.convertString({text: "http://instagram.com/p/eSSk3xTISl/", embed: true}).should.eql('<iframe src="//instagram.com/p/eSSk3xTISl/embed/" width="400" height="498" frameborder="0" scrolling="no" allowtransparency="true"></iframe>')
+      metatron.convertString({text: "http://instagram.com/p/eSSk3xTISl", embed: true}).should.eql('<iframe src="//instagram.com/p/eSSk3xTISl/embed/" width="400" height="498" frameborder="0" scrolling="no" allowtransparency="true"></iframe>')
 
     it "should be able to embed 2 instagram images", () ->
       metatron.convertString({text: "http://instagram.com/p/eSSk3xTISl/ and this here http://instagram.com/p/eSqC89zISo/", embed: true}).should.eql('<iframe src="//instagram.com/p/eSSk3xTISl/embed/" width="400" height="498" frameborder="0" scrolling="no" allowtransparency="true"></iframe> and this here <iframe src="//instagram.com/p/eSqC89zISo/embed/" width="400" height="498" frameborder="0" scrolling="no" allowtransparency="true"></iframe>')

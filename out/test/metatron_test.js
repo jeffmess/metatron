@@ -82,7 +82,7 @@
     return describe('Embed URL', function() {
       it("should be able to embed an instagram image", function() {
         return metatron.convertString({
-          text: "http://instagram.com/p/eSSk3xTISl/",
+          text: "http://instagram.com/p/eSSk3xTISl",
           embed: true
         }).should.eql('<iframe src="//instagram.com/p/eSSk3xTISl/embed/" width="400" height="498" frameborder="0" scrolling="no" allowtransparency="true"></iframe>');
       });

@@ -15,14 +15,14 @@ Licensed under the MIT license.
     instagram: (options) ->
       options.width = 400 unless options.width
       options.height = 498 unless options.height
-      regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/.+)$", 'i')
+      regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/[a-zA-Z0-9]+)\\/?$", 'i')
       instagram_url = options.url.match(regex)
       """
-        <iframe src="//#{instagram_url[1]}embed/" width="#{options.width}" height="#{options.height}" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+        <iframe src="//#{instagram_url[1]}/embed/" width="#{options.width}" height="#{options.height}" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
       """
 
     isInstagramImage: (url) ->
-      regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/.+)$", 'i')
+      regex = new RegExp("^https?:\\/\\/(instagr(am\\.com|\\.am)\\/p\\/[a-zA-Z0-9]+)\\/?$", 'i')
       return false unless regex.test(url)
       true
 
