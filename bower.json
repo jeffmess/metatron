@@ -1,0 +1,18 @@
+{
+  "name": "metatron",
+  "version": "0.0.4",
+  "homepage": "https://github.com/jeffmess/metatron",
+  "authors": [
+    "Jeffrey van Aswegen <jeffmess@gmail.com>"
+  ],
+  "description": "Replaces urls in text with anchors",
+  "main": "./out/lib/metatron.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
