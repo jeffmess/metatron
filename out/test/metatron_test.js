@@ -44,8 +44,14 @@
       it("should recognize websites with js fragments", function() {
         return metatron.validateUrl("some.website.com/test/query/string#blah").should.be["true"];
       });
-      return it("should recognize websites with commas", function() {
+      it("should recognize websites with commas", function() {
         return metatron.validateUrl("some.website.com/test,site/?qu,ery#test=as,a").should.be["true"];
+      });
+      it("should recognize ssl twitter urls with uppercase letters", function() {
+        return metatron.validateUrl("https://twitter.com/SweetButtholes").should.be["true"];
+      });
+      return it("should recognize random punctuation in params", function() {
+        return metatron.validateUrl("http://gifsound.com/?gif=i.imgur.com/vGSjN2g.jpg&v=vgiDcJi534Y&s=40").should.be["true"];
       });
     });
     describe('Fetch URL from string', function() {

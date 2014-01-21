@@ -44,6 +44,12 @@ describe 'Metatron', ()->
     it "should recognize websites with commas", () ->
       metatron.validateUrl("some.website.com/test,site/?qu,ery#test=as,a").should.be.true
 
+    it "should recognize ssl twitter urls with uppercase letters", () ->
+      metatron.validateUrl("https://twitter.com/SweetButtholes").should.be.true
+
+    it "should recognize random punctuation in params", () ->
+      metatron.validateUrl("http://gifsound.com/?gif=i.imgur.com/vGSjN2g.jpg&v=vgiDcJi534Y&s=40").should.be.true
+
 #    it "should recognize websites with nested js fragments", () ->
 #      metatron.validateUrl("some.website.com/test/query/string#blah/blah/blah").should.be.true
 
