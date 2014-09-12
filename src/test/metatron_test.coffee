@@ -30,7 +30,10 @@ describe 'Metatron', ()->
       metatron.validateUrl("www.youtube.com").should.be.true
 
     it "should recognize websites with ports", () ->
-      metatron.validateUrl("some.website.with.ports:3000").should.be.true
+      metatron.validateUrl("some.website.with.port:3000").should.be.true
+
+    it "should recognize localhost with port", () ->
+      metatron.validateUrl("http://localhost:3000/random/path.xml").should.be.true
 
     it "should recognize websites with a path", () ->
       metatron.validateUrl("some.website.com/deep/nested/path/with.xml").should.be.true
