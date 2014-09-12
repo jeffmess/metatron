@@ -33,7 +33,10 @@
         return metatron.validateUrl("www.youtube.com").should.be["true"];
       });
       it("should recognize websites with ports", function() {
-        return metatron.validateUrl("some.website.with.ports:3000").should.be["true"];
+        return metatron.validateUrl("some.website.with.port:3000").should.be["true"];
+      });
+      it("should recognize websites with protocol and port", function() {
+        return metatron.validateUrl("http://localhost:3000/random/path.xml").should.be["true"];
       });
       it("should recognize websites with a path", function() {
         return metatron.validateUrl("some.website.com/deep/nested/path/with.xml").should.be["true"];
