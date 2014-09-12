@@ -32,7 +32,7 @@ describe 'Metatron', ()->
     it "should recognize websites with ports", () ->
       metatron.validateUrl("some.website.with.port:3000").should.be.true
 
-    it "should recognize websites with protocol and port", () ->
+    it "should recognize localhost with port", () ->
       metatron.validateUrl("http://localhost:3000/random/path.xml").should.be.true
 
     it "should recognize websites with a path", () ->
